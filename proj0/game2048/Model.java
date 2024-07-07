@@ -114,29 +114,33 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
+        Board preboard;
         board.setViewingPerspective(side);
         int[] arr = new int[board.size()];
         Arrays.fill(arr, board.size() - 1);
         for(int i = board.size() - 1; i >= 0 ; i--)
         {
+            //int k = 3;
             for(int j = 0; j < board.size(); j++)
             {
-                if (board.tile(j, i) != null && arr[i] != i)
+                if (board.tile(j, i) != null)
                 {
-                    Tile t = board.tile(j, i);
-                    Tile tt = board.tile(j, arr[j]);
-                    if (board.tile(j, arr[j]) == null)
-                    {
-
-                        board.move(j, arr[j], t);
-                        changed = true;
-                    }
-                    else if (t.value() == tt.value()){
-                        board.move(j, arr[j], t);
-                        --arr[j];
-                        changed = true;
-                        score += t.value() * 2;
-                        break;
+                    for(int k = arr[j]; k > i; k--){
+                        Tile t = board.tile(j, i);
+                        Tile tt = board.tile(j, k);
+                        if (board.tile(j, k) == null)
+                        {
+                            board.move(j, k, t);
+                            changed = true;
+                            break;
+                        }
+                        else if (t.value() == tt.value()){
+                            board.move(j, k, t);
+                            --arr[j];
+                            changed = true;
+                            score += t.value() * 2;
+                            break;
+                        }
                     }
                 }
             }
@@ -170,7 +174,7 @@ public class Model extends Observable {
         {
             for(int j = 0; j < b.size(); j++)
             {
-                if (b.tile(j, i) == null)
+                if (b.tile(i, j) == null)
                     return true;
             }
         }
@@ -186,9 +190,9 @@ public class Model extends Observable {
         // TODO: Fill in this function.
         for(int i = 0; i < b.size(); i++){
             for(int j = 0; j < b.size(); j++){
-                if (b.tile(j, i) == null)
+                if (b.tile(i, j) == null)
                     continue;
-                Tile t = b.tile(j, i);
+                Tile t = b.tile(i, j);
                 if(t.value() == MAX_PIECE)
                     return true;
             }
