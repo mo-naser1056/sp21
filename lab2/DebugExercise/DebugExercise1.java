@@ -5,13 +5,14 @@ package DebugExercise;
  * feature work.
  */
 public class DebugExercise1 {
-    public static int divideThenRound(int top, int bottom) {
-        int quotient = top / bottom;
+    public static int divideThenRound(float top, int bottom) {
+        float quotient = top / bottom;
         int result = Math.round(quotient);
         return result;
     }
 
     public static void main(String[] args) {
+        int k = askUser();
         int t = 10;
         int b = 2;
         int result = divideThenRound(t, b);
@@ -27,4 +28,9 @@ public class DebugExercise1 {
         int result3 = divideThenRound(t3, b3);
         System.out.println("round(" + t3 + "/" + b3 + ")=" + result3);
     }
+
+    private static int askUser() {
+        return 2;
+    }
+
 }

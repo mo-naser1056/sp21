@@ -64,4 +64,10 @@ public class IntList {
         System.arraycopy(argList, 1, restList, 0, argList.length - 1);
         return new IntList(argList[0], IntList.of(restList));
     }
+    public static void main(String[] args){
+        IntList l1 = IntList.of();
+        IntList l2 = IntList.of(1, 2, 3);
+        IntList l3 = IntList.of(1);
+        System.out.println(l3.toString());
+    }
 }
