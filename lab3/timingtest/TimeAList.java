@@ -16,12 +16,36 @@ public class TimeAList {
             System.out.printf("%12d %12.2f %12d %12.2f\n", N, time, opCount, timePerOp);
         }
     }
-
     public static void main(String[] args) {
         timeAListConstruction();
+
     }
 
     public static void timeAListConstruction() {
-        // TODO: YOUR CODE HERE
+        AList<Integer> Ns = new AList<>();
+        AList<Double> times = new AList<>();
+        AList<Integer> opCounts = new AList<>();
+
+        Stopwatch stopwatch = new Stopwatch();
+
+        // Sample code to simulate timing data (replace with actual timing logic)
+        for (int i = 0; i <= 7; i++) {
+            int N = (int)Math.pow(2 ,i) * 1000;
+
+            // Simulate AList construction
+            AList<Integer> list = new AList<>();
+            for (int j = 0; j < N; j++) {
+                list.addLast(j);
+            }
+
+            double timeInSeconds = stopwatch.elapsedTime();
+            int ops = N; // Assuming one operation per addLast call
+
+            Ns.addLast(N);
+            times.addLast(timeInSeconds);
+            opCounts.addLast(ops);
+        }
+
+        printTimingTable(Ns, times, opCounts);
     }
 }
