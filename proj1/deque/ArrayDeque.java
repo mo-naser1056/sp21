@@ -116,7 +116,8 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     @Override
     public boolean equals(Object o) {
         if(this == o) return true;
-        if(o instanceof ArrayDeque obj) {
+        if(o instanceof ArrayDeque) {
+            ArrayDeque<T> obj = (ArrayDeque) o;
             if (size != obj.size()) return false;
             for(int i = 0; i < size; i++) {
                 if(item[i] != obj.get(0)) return false;
@@ -124,16 +125,5 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         }
         return true;
     }
-    public static void main(String[] args) {
-        ArrayDeque<Integer> l = new ArrayDeque<Integer>();
-        for (int i = 0; i < 3; i++) {
-            l.addLast(i);
-        }
-
-        for (double i = 0; i < 3; i++) {
-            int x = l.removeFirst();
-            if( i != x)
-        System.out.println(i + " " + x);}
-        }
     }
 
